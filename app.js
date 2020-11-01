@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator')
 
 // import Routes
+const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 
 // App
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 
 // Routes
+app.use('/api', authRoutes)
 app.use('/api', userRoutes)
 
 const port = process.env.PORT || 8000
