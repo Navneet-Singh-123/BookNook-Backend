@@ -1,6 +1,8 @@
 const express = require('express')
 require('dotenv').config();
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 // import Routes
 const userRoutes = require('./routes/user');
@@ -16,6 +18,10 @@ mongoose.connect(process.env.DATABASE, {
 }).then(()=>{
     console.log("Database is Connected")
 })
+
+// Middlewares
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 // Routes
 app.use('/api', userRoutes)
