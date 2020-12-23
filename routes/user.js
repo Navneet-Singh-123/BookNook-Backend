@@ -8,7 +8,7 @@ const {
 } = require('../Controllers/auth.js')
 
 const {
-    userById, read, update
+    userById, read, update, purchaseHistory
 } = require('../Controllers/user.js')
 
 router.get('/secret/:userId', requireSignin, isAuth, isAdmin, (req, res)=>{
@@ -18,6 +18,7 @@ router.get('/secret/:userId', requireSignin, isAuth, isAdmin, (req, res)=>{
 })
 router.get('/user/:userId', requireSignin, isAuth, read);
 router.put('/user/:userId', requireSignin, isAuth, update);
+router.get('/orders/by/user/:userId', requireSignin, isAuth, purchaseHistory);
 
 router.param('userId', userById)
 
